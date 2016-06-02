@@ -6,6 +6,7 @@
 
 SocialSent is a package for inducing and analyzing domain-specific sentiment lexicons.
 A number of state-of-the-art algorithms are included, including SentProp (URL REMOVED) and Densifier (http://www.cis.lmu.de/~sascha/Ultradense/).
+SentProp is optimal for use with domain-specific corpora and modest vocabulary sizes (5000-10000 words), while Densifier is very fast, scales, and works well with embeddings constructed from massive domain-general corpora.
 A detailed description of the SentProp algorithm, as will as descriptions of other baselines in the SocialSent package is provided in (URL REMOVED).
 
 The package also includes a set of pre-induced domain-specific lexicons for 150 years of historical English as well as for 250 online communities from reddit.
@@ -18,11 +19,12 @@ The package also includes a set of pre-induced domain-specific lexicons for 150 
 To use SentProp you will need to either build some word vector embeddings or download some that are pre-trained.
 Once this is done, you would specify the path to these embeddings in `constants.py`.
 The file `constants.py` also contains some links to pre-trained embeddings that were used in (URL REMOVED).
-Running `example.sh` will download some pre-trained embeddings and run SentProp on them (using the code in `example.py`).
+Running `example.sh` will download some pre-trained embeddings and run SentProp on them (using the code in `example.py`); for speed only 100 dimensional GloVe (http://nlp.stanford.edu/projects/glove/) embeddings are used.
 You can build embeddings yourself with the code in the `representations` directory, which is based upon code in (URL REMOVED).
 
 Once you have pre-trained embeddings the file `polarity_induction_methods.py` contains implementations for a suite of sentiment induction algorithms, along with some documentation on how to use them.
 The file `evaluate_methods.py` also includes the evaluation script used in (URL REMOVED), which is useful to look at to get an idea of how SentProp and the other baselines work.
+Warning that some of these methods may require heavy RAM and CPU resources.
 
 ## Dependencies
 

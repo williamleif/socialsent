@@ -3,7 +3,7 @@ from nltk.corpus import stopwords
 
 ### SYSTEM AGNOSTIC CONSTANTS 
 ######
-DATA = '/data'
+DATA = './data/'
 LEXICONS = DATA + 'lexicon_info/'
 PROCESSED_LEXICONS = DATA + 'lexicons/'
 POLARITIES = DATA + 'polarities/'
