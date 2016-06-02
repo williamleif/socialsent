@@ -24,8 +24,8 @@ DEFAULT_ARGUMENTS = dict(
         sym=True,
 
         # for learning embeddings transformation
+        # from http://arxiv.org/abs/1602.07572
         n_epochs=50,
-        force_orthogonal=False,
         batch_size=100,
         cosine=False,
 
@@ -34,6 +34,48 @@ DEFAULT_ARGUMENTS = dict(
         n_procs=10,
 )
 
+def hyperparam_eval():
+    """ 
+    This method was used to get the hyperparameters for SentProp.
+    The other methods used published huperparams.
+    The hyperparameter search was performed on the bingliu lexicon to avoid overfitting.
+    """
+    print "Getting evaluation words and embeddings"
+    lexicon = lexicons.load_lexicon("bingliu", remove_neutral=False)
+    eval_words = set(lexicon.keys())
+
+    positive_seeds, negative_seeds = seeds.hist_seeds()
+
+    common_embed = create_representation("GIGA", constants.COMMON_EMBEDDINGS, 
+            eval_words.union(positive_seeds).union(negative_seeds))
+    common_words = set(common_embed.iw)
+    eval_words = eval_words.intersection(common_words)
+
+    hist_embed = create_representation("SVD", constants.SVD_EMBEDDINGS + "1990")
+    hist_words = set(hist_embed.iw)
+    eval_words = eval_words.intersection(hist_words)
+
+    eval_words = [word for word in eval_words
+            if not word in positive_seeds 
+            and not word in negative_seeds] 
+
+    print "SentProp..."
+    for nn in [5, 10, 25, 50]:
+        for beta in [0.8, 0.9, 0.95, 0.99]:
+          print "Common"
+          polarities = run_method(positive_seeds, negative_seeds, 
+                    common_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
+                    method=polarity_induction_methods.random_walk, 
+                    nn=nn, beta=beta,
+                    **DEFAULT_ARGUMENTS)
+          evaluate(polarities, lexicon, eval_words)
+          print "Hist"
+          polarities = run_method(positive_seeds, negative_seeds, 
+                    hist_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
+                    method=polarity_induction_methods.random_walk, 
+                    nn=nn, beta=beta,
+                    **DEFAULT_ARGUMENTS)
+          evaluate(polarities, lexicon, eval_words)
 
 def evaluate_methods():
     """
@@ -82,63 +124,6 @@ def evaluate_methods():
             **DEFAULT_ARGUMENTS)
     evaluate(polarities, lexicon, eval_words, tau_lexicon=kuperman)
     util.write_pickle(polarities, "tmp/gi-cc-walk-pols.pkl")
-
-def hyperparam_eval():
-    print "Getting evaluation words and embeddings"
-    lexicon = lexicons.load_lexicon("bingliu", remove_neutral=False)
-    eval_words = set(lexicon.keys())
-
-    positive_seeds, negative_seeds = seeds.hist_seeds()
-
-    common_embed = create_representation("GIGA", constants.COMMON_EMBEDDINGS, 
-            eval_words.union(positive_seeds).union(negative_seeds))
-    common_words = set(common_embed.iw)
-    eval_words = eval_words.intersection(common_words)
-
-    hist_embed = create_representation("SVD", constants.SVD_EMBEDDINGS + "1990")
-    hist_words = set(hist_embed.iw)
-    eval_words = eval_words.intersection(hist_words)
-
-    eval_words = [word for word in eval_words
-            if not word in positive_seeds 
-            and not word in negative_seeds] 
-
-    print "SentProp..."
-    for nn in [5, 10, 25, 50]:
-        for beta in [0.8, 0.9, 0.95, 0.99]:
-          print "Common"
-          polarities = run_method(positive_seeds, negative_seeds, 
-                    common_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
-                    method=polarity_induction_methods.random_walk, 
-                    nn=nn, beta=beta,
-                    **DEFAULT_ARGUMENTS)
-          evaluate(polarities, lexicon, eval_words)
-          print "Hist"
-          polarities = run_method(positive_seeds, negative_seeds, 
-                    hist_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
-                    method=polarity_induction_methods.random_walk, 
-                    nn=nn, beta=beta,
-                    **DEFAULT_ARGUMENTS)
-          evaluate(polarities, lexicon, eval_words)
-
-    print "Densify..."
-    for lr in [0.001, 0.01, 0.1, 0.5]:
-        for reg in [0.001, 0.01, 0.1, 0.5]:
-          print "LR : ", lr, "Reg: ", reg
-          print "Common"
-          polarities = run_method(positive_seeds, negative_seeds, 
-                    common_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
-                    method=polarity_induction_methods.densify, 
-                    lr=lr, regularization_strength=reg,
-                    **DEFAULT_ARGUMENTS)
-          evaluate(polarities, lexicon, eval_words, tern=False)
-          print "Hist"
-          polarities = run_method(positive_seeds, negative_seeds, 
-                    hist_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
-                    method=polarity_induction_methods.densify, 
-                    lr=lr, regularization_strength=reg,
-                    **DEFAULT_ARGUMENTS)
-          evaluate(polarities, lexicon, eval_words, tern=False)
 
 
 def evaluate_overlap_methods():

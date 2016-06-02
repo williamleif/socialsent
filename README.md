@@ -10,13 +10,16 @@ A detailed description of the SentProp algorithm, as will as descriptions of oth
 
 The package also includes a set of pre-induced domain-specific lexicons for 150 years of historical English as well as for 250 online communities from reddit.
 
+`data/lexicons` includes a number of known lexicons used for evalution etc..
+`evaluate_methods.py` contains the main code used in the evaluations in the submitted EMNLP paper. This file includes hyperparameter issues etc.
+
 ## Using the code
 
 To use SentProp you will need to either build some word vector embeddings or download some that are pre-trained.
 Once this is done, you would specify the path to these embeddings in `constants.py`.
 The file `constants.py` also contains some links to pre-trained embeddings that were used in (URL REMOVED).
 Running `example.sh` will download some pre-trained embeddings and run SentProp on them (using the code in `example.py`).
-You can build embeddings yourself with the code in the `representations` directory, which is based upon code in https://github.com/williamleif/historical-embeddings
+You can build embeddings yourself with the code in the `representations` directory, which is based upon code in (URL REMOVED).
 
 Once you have pre-trained embeddings the file `polarity_induction_methods.py` contains implementations for a suite of sentiment induction algorithms, along with some documentation on how to use them.
 The file `evaluate_methods.py` also includes the evaluation script used in (URL REMOVED), which is useful to look at to get an idea of how SentProp and the other baselines work.

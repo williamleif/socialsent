@@ -15,9 +15,6 @@ def pos_words(year, pos):
     Load all words with specified POS tag for year.
     """
     pos_tagss = pos_tags(year)
-    # happy fix due to lower-casing
-    pos_tagss["happy"] = "ADJ"
-    pos_tagss["amazing"] = "ADJ"
     return set([word for word in pos_tagss if pos_tagss[word] == pos])
 
 def words_above_freq(year, freq):

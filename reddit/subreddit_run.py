@@ -1,7 +1,5 @@
 import sys
 import os
-import time
-import random
 import seeds
 import constants
 import util
@@ -12,14 +10,13 @@ import polarity_induction_methods
 
 from representations.representation_factory import create_representation
 
-
-DICTS = "/dfs/scratch0/wleif/Reddit/dicts/{}-dict.pkl"
-NAMES = "/dfs/scratch0/wleif/Reddit/comment_counts.txt"
-POLARITIES = "/dfs/scratch0/wleif/Reddit/polarities/"
+##FILE PATHS REMOVED FOR ANONYMITY
+DICTS = ""
+NAMES = ""
+POLARITIES = ""
 
 def worker(proc_num, queue):
     while True:
-#        time.sleep(random.random()*10)
         try:
             name = queue.get(block=False)
         except Empty:
@@ -54,5 +51,3 @@ if __name__ == "__main__":
         p.start()
     for p in procs:
         p.join()
-
-

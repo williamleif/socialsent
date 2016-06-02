@@ -11,9 +11,6 @@ NEGATIVE_TURNEY = ["bad", "terrible", "poor", "negative", "unfortunate", "wrong"
 POSITIVE_FINANCE = ["successful", "excellent", "profit", "beneficial", "improving", "improved", "success", "gains", "positive"]
 NEGATIVE_FINANCE = ["negligent", "loss", "volatile", "wrong", "losses", "damages", "bad", "litigation", "failure", "down", "negative"]
 
-#POSITIVE_TWEET = ["love", "awesome",  "nice", "amazing", "best", "fantastic", "correct"]
-#NEGATIVE_TWEET = ["hate", "terrible",  "nasty", "awful", "worst", "horrible", "wrong"]
-
 POSITIVE_TWEET = ["love", "loved", "loves", "awesome",  "nice", "amazing", "best", "fantastic", "correct", "happy"]
 NEGATIVE_TWEET = ["hate", "hated", "hates", "terrible",  "nasty", "awful", "worst", "horrible", "wrong", "sad"]
 

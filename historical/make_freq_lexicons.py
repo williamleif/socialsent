@@ -11,7 +11,8 @@ from Queue import Empty
 from representations.representation_factory import create_representation
 
 """
-Makes historical sentiment lexicons for non-stop words with freq. > 10**-6.0
+Makes historical sentiment lexicons for top-5000 non-stop words within each year.
+Stop words are defined as the top 100 words by frequency as well as any words in the nltk stopwords list.
 """
 
 def worker(proc_num, queue):

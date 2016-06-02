@@ -3,9 +3,10 @@ import util
 from argparse import ArgumentParser
 from representations import ppmigen, cooccurgen, makelowdim
 
-COMMENTS = "/dfs/scratch0/wleif/Reddit/clean_comments/{}.tsv"
-DICTS = "/dfs/scratch0/wleif/Reddit/dicts/{}-dict.pkl"
-OUT = "/dfs/scratch0/wleif/Reddit/vecs/{}/"
+## PATHS REMOVED FOR ANONYMITY
+COMMENTS = ""
+DICTS = ""
+OUT = ""
 
 def word_gen(file, gdict):
     for i, line in enumerate(open(file)):
@@ -13,7 +14,6 @@ def word_gen(file, gdict):
         comment = info[-1]
         for word in comment.split():
             word = word.lower()
-#            if word != "<EOS>" and word in gdict.token2id:
             if word in gdict.token2id:
                 yield word
         if i % 10000 == 0:

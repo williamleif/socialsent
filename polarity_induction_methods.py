@@ -13,6 +13,12 @@ A set of methods for inducing polarity lexicons using word embeddings and seed w
 """
 
 def dist(embeds, positive_seeds, negative_seeds, **kwargs):
+    """
+    Learns polarity scores using cosine distance with seed words.
+    Adapted from Turney, P. and M. Littman. "Measuring Praise and Criticism: Inference of semantic orientation from assocition".
+    ACM Trans. Inf. Sys., 2003. 21(4) 315-346.
+    """
+
     polarities = {}
     sim_mat = similarity_matrix(embeds, **kwargs)
     for i, w in enumerate(embeds.iw):
@@ -85,7 +91,7 @@ def densify(embeddings, positive_seeds, negative_seeds,
 def random_walk(embeddings, positive_seeds, negative_seeds, beta=0.9, **kwargs):
     """
     Learns polarity scores via random walks with teleporation to seed sets.
-    Main method used in paper. 
+    Main method used in SentProp paper.
     """
     def run_random_walk(M, teleport, beta, **kwargs):
         def update_seeds(r):
@@ -106,6 +112,7 @@ def label_propagate_probabilistic(embeddings, positive_seeds, negative_seeds, **
     """
     Learns polarity scores via standard label propagation from seed sets.
     One walk per label. Scores normalized to probabilities. 
+    See http://mlg.eng.cam.ac.uk/zoubin/papers/CMU-CALD-02-107.pdf
     """
     words = embeddings.iw
     M = transition_matrix(embeddings, **kwargs)
@@ -122,6 +129,7 @@ def label_propagate_continuous(embeddings, positive_seeds, negative_seeds, **kwa
     """
     Learns polarity scores via standard label propagation from seed sets.
     One walk for both labels, continuous non-normalized scores.
+    See http://mlg.eng.cam.ac.uk/zoubin/papers/CMU-CALD-02-107.pdf
     """
     words = embeddings.iw
     M = transition_matrix(embeddings, **kwargs)
@@ -137,7 +145,7 @@ def graph_propagate(embeddings, positive_seeds, negative_seeds, **kwargs):
     """
     Graph propagation method dapted from Velikovich, Leonid, et al. "The viability of web-derived polarity lexicons."
     http://www.aclweb.org/anthology/N10-1119
-    Should be used with arccos=True
+    Should be used with arccos=True if not using raw counts
     """
     def run_graph_propagate(seeds, alpha_mat, trans_mat, T=1, **kwargs):
         def get_rel_edges(ind_set):

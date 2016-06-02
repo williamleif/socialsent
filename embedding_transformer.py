@@ -1,5 +1,4 @@
 import lexicons
-import util
 import random
 import numpy as np
 import matplotlib.pyplot as plt
@@ -7,7 +6,7 @@ from itertools import combinations, product
 from keras import backend as K
 from keras.models import Graph
 from keras.layers.core import Dense, Lambda
-from keras.optimizers import Adam, Optimizer
+from keras.optimizers import Optimizer
 from keras.regularizers import Regularizer
 from keras.constraints import Constraint
 import theano.tensor as T
@@ -160,7 +159,6 @@ def apply_embedding_transformation(embeddings, positive_seeds, negative_seeds,
     model = get_model(embeddings.m.shape[1], n_dim, **kwargs)
 
     print "Learning embedding transformation"
-#    prog = util.Progbar(n_epochs)
     for epoch in range(n_epochs):
         dataset.shuffle()
         loss = 0
@@ -170,11 +168,8 @@ def apply_embedding_transformation(embeddings, positive_seeds, negative_seeds,
             if force_orthogonal:
                 Q = orthogonalize(Q)
             model.set_weights([Q, np.zeros_like(b)])
-#        prog.update(epoch + 1, exact_values=[('loss', loss / dataset.y.size)])
     Q, b = model.get_weights()
     new_mat = embeddings.m.dot(Q)[:,0:n_dim]
-    #print "Orthogonality rmse", np.mean(np.sqrt(
-    #    np.square(np.dot(Q, Q.T) - np.identity(Q.shape[0]))))
 
     if plot and n_dim == 2:
         plot_words = positive_seeds + negative_seeds if plot_seeds else \

@@ -12,7 +12,7 @@ from representations.representation_factory import create_representation
 
 """
 Makes historical sentiment lexicons for all adjectives.
-(Only adjectives that occurred > 500 times are contained within the embeddings).
+(Only adjectives that occurred > 100 times are contained within the embeddings).
 """
 
 def worker(proc_num, queue):
