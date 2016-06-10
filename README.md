@@ -1,4 +1,4 @@
-# SocialSent 
+# SocialSent: Domain-Specific Sentiment Lexicons for Computational Social Science
 
 ### Authors: William L. Hamilton and Kevin Clark
 ###[Project Website](http://nlp.stanford.edu/projects/socialsent)
@@ -7,7 +7,7 @@
 
 SocialSent is a package for inducing and analyzing domain-specific sentiment lexicons.
 A number of state-of-the-art algorithms are included, including SentProp and Densifier (http://www.cis.lmu.de/~sascha/Ultradense/).
-A detailed description of the SentProp algorithm, as will as descriptions of other baselines in the SocialSent package is provided in the paper
+A detailed description of the SentProp algorithm, as will as descriptions of other baselines in the SocialSent package is provided in the paper:
 [Inducing Domain-Specific Sentiment Lexicons from Unlabeled Corpora](https://arxiv.org/abs/1606.02820).
 
 The [project website](http://nlp.stanford.edu/projects/socialsent) includes pre-constructed sentiment lexicons for 150 years of historical English and 250 online communities from the social media forum Reddit.
