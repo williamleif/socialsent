@@ -29,7 +29,9 @@ The file `evaluate_methods.py` also includes the evaluation script used in , whi
 
 ## Dependencies
 
-An up-to-date Python 2.7 distribution, with the standard packages provided by the anaconda distribution is required.
+**The code is not currently compatible with the newest Keras distribution (1.0); only the "denisfy"/Densifier method requires this package, however. So you can either install an older Keras (3.0) or remove all calls to the "densify" method.**
+
+An up-to-date Python 2.7 distribution, with the standard packages provided by the anaconda distribution is required. However, the code was only tested with some versions of these packages.
 
 In particular, the code was tested with:
 * theano (0.8.0) 
