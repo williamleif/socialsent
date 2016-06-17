@@ -21,5 +21,5 @@ if __name__ == "__main__":
     acc, auc, avg_per  = binary_metrics(polarities, lexicon, eval_words)
     print "Accuracy with best threshold: {:0.2f}".format(acc)
     print "ROC AUC: {:0.2f}".format(auc)
-    print "Average precision score: {:0.2f}".format(auc)
+    print "Average precision score: {:0.2f}".format(avg_per)
 
