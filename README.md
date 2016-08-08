@@ -20,7 +20,8 @@ William L. Hamilton, Kevin Clark, Jure Leskovec, and Dan Jurafsky. Inducing Doma
 
 `pip install socialsent`
 
-Or you can download the source from the GitHub repo.
+Or you can download the source from the GitHub repo and run
+`python setup.py install`
 
 ## Using the code
 
@@ -29,9 +30,10 @@ Once this is done, you would specify the path to these embeddings in `constants.
 The file `constants.py` also contains some links to pre-trained embeddings that were used in [the paper mentioned above.](https://arxiv.org/abs/1606.02820)
 Running `example.sh` will download some pre-trained embeddings and run SentProp on them (using the code in `example.py`).
 You can build embeddings yourself with the code in the `representations` directory, which is based upon code in https://github.com/williamleif/historical-embeddings
+This code also illustrates how to use the SocialSent methods.
 
-Once you have pre-trained embeddings the file `polarity_induction_methods.py` contains implementations for a suite of sentiment induction algorithms, along with some documentation on how to use them.
-The file `evaluate_methods.py` also includes the evaluation script used in , which is useful to look at to get an idea of how SentProp and the other baselines work.
+The file `polarity_induction_methods.py` contains implementations for a suite of sentiment induction algorithms, along with some comments/documentation on how to use them.
+The file `evaluate_methods.py` also includes the evaluation script used in our published work, which is useful to look at to get an idea of how SentProp and the other baselines work.
 
 ## Dependencies
 
