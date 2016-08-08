@@ -16,6 +16,12 @@ If you make use of this work in your research please cite the following paper:
 
 William L. Hamilton, Kevin Clark, Jure Leskovec, and Dan Jurafsky. Inducing Domain-Specific Sentiment Lexicons from Unlabeled Corpora. Proceedings of EMNLP. 2016. (to appear; arXiv:1606.02820).
 
+## Install
+
+`pip install socialsent`
+
+Or you can download the source from the GitHub repo.
+
 ## Using the code
 
 To use SentProp you will need to either build some word vector embeddings or download some that are pre-trained.
