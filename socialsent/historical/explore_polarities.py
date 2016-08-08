@@ -1,5 +1,5 @@
-import constants
-import util
+from socialsent import constants
+from socialsent import util
 from collections import defaultdict
 import matplotlib.pyplot as plt
 import seaborn as sns

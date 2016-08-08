@@ -1,8 +1,8 @@
 import numpy as np
-import util
+from socialsent import util
 from argparse import ArgumentParser
 
-from representations.representation_factory import create_representation
+from socialsent.representations.representation_factory import create_representation
 from scipy.sparse import coo_matrix
 
 def make_ppmi_mat(old_mat, row_probs, col_probs, smooth, neg=1, normalize=False):

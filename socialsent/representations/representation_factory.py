@@ -1,5 +1,5 @@
-from embedding import SVDEmbedding, Embedding, GigaEmbedding
-from explicit import Explicit
+from socialsent.representations.embedding import SVDEmbedding, Embedding, GigaEmbedding
+from socialsent.representations.explicit import Explicit
 
 def create_representation(rep_type, path, *args, **kwargs):
     if rep_type == 'Explicit':

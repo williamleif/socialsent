@@ -1,8 +1,8 @@
-import seeds
-import lexicons
-from polarity_induction_methods import random_walk
-from evaluate_methods import binary_metrics
-from representations.representation_factory import create_representation
+from socialsent import seeds
+from socialsent import lexicons
+from socialsent.polarity_induction_methods import random_walk
+from socialsent.evaluate_methods import binary_metrics
+from socialsent.representations.representation_factory import create_representation
 
 if __name__ == "__main__":
     print "Evaluting SentProp with 100 dimensional GloVe embeddings"

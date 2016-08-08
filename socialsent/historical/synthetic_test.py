@@ -1,16 +1,16 @@
-import constants
-import util
+from socialsent import constants
+from socialsent import util
 import polarity_induction_methods
 import time
-import seeds
-import vocab
+from socialsent import seeds
+from socialsent import vocab
 import random
 import numpy as np
-import evaluate_methods
+from socialsent import evaluate_methods
 from Queue import Empty
 from multiprocessing import Process, Queue
-from representations.representation_factory import create_representation
-from representations.embedding import Embedding
+from socialsent.representations.representation_factory import create_representation
+from socialsent.representations.embedding import Embedding
 from sklearn.utils.extmath import randomized_svd
 #from scipy.sparse import csr_matrix, vstack
 from numpy import vstack

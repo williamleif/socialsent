@@ -1,5 +1,5 @@
 import constants
-import util
+from socialsent import util
 import collections
 import numpy as np
 import itertools

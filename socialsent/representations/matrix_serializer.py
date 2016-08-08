@@ -1,6 +1,6 @@
 import numpy as np
 import os
-import util
+from socialsent import util
 
 def load_matrix(f):
     if not f.endswith('.bin'):

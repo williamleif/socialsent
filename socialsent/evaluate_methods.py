@@ -1,19 +1,19 @@
-import constants
+from socialsent import constants
+from socialsent import util
+from socialsent import polarity_induction_methods
+from socialsent import seeds
+from socialsent import lexicons
 import sys
-import util
-import polarity_induction_methods
-import seeds
-import lexicons
 import random
 import numpy as np
 import scipy as sp
 import embedding_transformer
 
 from operator import itemgetter
-from historical import vocab
+from socialsent.historical import vocab
 from sklearn.metrics import roc_auc_score, average_precision_score, confusion_matrix, f1_score
 from scipy.stats import kendalltau
-from representations.representation_factory import create_representation
+from socialsent.representations.representation_factory import create_representation
 
 DEFAULT_ARGUMENTS = dict(
         # for iterative graph algorithms
@@ -30,8 +30,8 @@ DEFAULT_ARGUMENTS = dict(
         cosine=False,
 
         ## bootstrap
-        num_boots=50,
-        n_procs=10,
+        num_boots=1,
+        n_procs=1,
 )
 
 

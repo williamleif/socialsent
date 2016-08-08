@@ -1,5 +1,5 @@
-import lexicons
-import util
+from socialsent import lexicons
+from socialsent import util
 import random
 import numpy as np
 import matplotlib.pyplot as plt
@@ -11,7 +11,7 @@ from keras.optimizers import Adam, Optimizer
 from keras.regularizers import Regularizer
 from keras.constraints import Constraint
 import theano.tensor as T
-from representations.embedding import Embedding
+from socialsent.representations.embedding import Embedding
 
 
 """

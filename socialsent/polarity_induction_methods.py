@@ -1,12 +1,12 @@
-import util
+from socialsent import util
 import functools
 import numpy as np
-import embedding_transformer
+from socialsent import embedding_transformer
 from scipy.sparse import csr_matrix
 from multiprocessing import Pool
 from sklearn.linear_model import LogisticRegression, Ridge
 
-from graph_construction import similarity_matrix, transition_matrix
+from socialsent.graph_construction import similarity_matrix, transition_matrix
 
 """
 A set of methods for inducing polarity lexicons using word embeddings and seed words.

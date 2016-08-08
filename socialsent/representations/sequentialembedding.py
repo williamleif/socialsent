@@ -1,7 +1,7 @@
 import collections
 import random
 
-from representations.embedding import Embedding, SVDEmbedding
+from socialsent.representations.embedding import Embedding, SVDEmbedding
 
 class SequentialEmbedding:
     def __init__(self, year_embeds, **kwargs):
