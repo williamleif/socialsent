@@ -14,7 +14,7 @@ The [project website](http://nlp.stanford.edu/projects/socialsent) includes pre-
 
 If you make use of this work in your research please cite the following paper:
 
-William L. Hamilton, Kevin Clark, Jure Leskovec, and Dan Jurafsky. Inducing Domain-Specific Sentiment Lexicons from Unlabeled Corpora. 2016 (pre-print). arXiv:1606.02820.
+William L. Hamilton, Kevin Clark, Jure Leskovec, and Dan Jurafsky. Inducing Domain-Specific Sentiment Lexicons from Unlabeled Corpora. Proceedings of EMNLP. 2016. (to appear; arXiv:1606.02820).
 
 ## Using the code
 
