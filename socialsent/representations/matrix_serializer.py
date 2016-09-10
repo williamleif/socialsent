@@ -7,7 +7,7 @@ def load_matrix(f):
         f += ".bin"
     import pyximport
     pyximport.install(setup_args={"include_dirs": np.get_include()})
-    from representations import sparse_io
+    from socialsent.representations import sparse_io
     return sparse_io.retrieve_mat_as_coo(f).tocsr()
 
 def save_vocabulary(path, vocab):

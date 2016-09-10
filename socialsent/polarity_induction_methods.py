@@ -44,29 +44,6 @@ def pmi(count_embeds, positive_seeds, negative_seeds, smooth=0.01, **kwargs):
             polarities[w] = pol
     return polarities
 
-
-def linear(embeddings, positive_seeds, negative_seeds, probabilistic=True, **kwargs):
-    """
-    Learns polarity scores as linear projection of embeddings.
-    """
-    seeds = positive_seeds + negative_seeds
-    words_test = [w for w in embeddings.iw if w not in seeds]
-
-    X_train = np.vstack(embeddings[w] for w in seeds)
-    X_test = np.vstack(embeddings[w] for w in words_test)
-    y_train = [1] * len(positive_seeds) + [0] * len(negative_seeds)
-
-    if probabilistic:
-        clf = LogisticRegression(C=0.1)
-        clf.fit(X_train, y_train)
-        ps = clf.predict_proba(X_test)[:, 1]
-    else:
-        clf = Ridge(alpha=100)
-        clf.fit(X_train, y_train)
-        ps = clf.predict(X_test)
-    return {w: ps[i] for i, w in enumerate(words_test)}
-
-
 def densify(embeddings, positive_seeds, negative_seeds, 
         transform_method=embedding_transformer.apply_embedding_transformation, **kwargs):
     """
