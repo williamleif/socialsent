@@ -34,7 +34,6 @@ DEFAULT_ARGUMENTS = dict(
         n_procs=1,
 )
 
-
 def evaluate_methods():
     """
     Evaluates different methods on standard English.
@@ -64,21 +63,24 @@ def evaluate_methods():
             and not word in negative_seeds]
     print "Evaluating with ", len(eval_words), "out of", len(lexicon)
 
-    print
-    print "WordNet:"
-    evaluate(qwn, lexicon, eval_words, tau_lexicon=kuperman)
-
-    print "Densifier:"
-    polarities = run_method(positive_seeds, negative_seeds, 
-            common_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
-            method=polarity_induction_methods.bootstrap, score_method=polarity_induction_methods.densify,
-            **DEFAULT_ARGUMENTS)
-    evaluate(polarities, lexicon, eval_words, tau_lexicon=kuperman)
+#    print
+#    print "WordNet:"
+#    evaluate(qwn, lexicon, eval_words, tau_lexicon=kuperman)
+#
+#    print "Densifier:"
+#    polarities = run_method(positive_seeds, negative_seeds, 
+#            common_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
+#            method=polarity_induction_methods.bootstrap, score_method=polarity_induction_methods.densify,
+#            **DEFAULT_ARGUMENTS)
+#    evaluate(polarities, lexicon, eval_words, tau_lexicon=kuperman)
 
     print "SentProp:"
     polarities = run_method(positive_seeds, negative_seeds, 
             common_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
-            method=polarity_induction_methods.bootstrap, beta=0.99, nn=10,
+            method=polarity_induction_methods.label_propagate_probabilistic,
+            #method=polarity_induction_methods.bootstrap, 
+            beta=0.99, nn=10,
+
             **DEFAULT_ARGUMENTS)
     evaluate(polarities, lexicon, eval_words, tau_lexicon=kuperman)
     util.write_pickle(polarities, "tmp/gi-cc-walk-pols.pkl")
@@ -161,13 +163,13 @@ def evaluate_overlap_methods():
 
     positive_seeds, negative_seeds = seeds.turney_seeds()
 
-    common_embed = create_representation("GIGA", constants.COMMON_EMBEDDINGS, 
-            eval_words.union(positive_seeds).union(negative_seeds))
-    common_words = set(common_embed.iw)
-    eval_words = eval_words.intersection(common_words)
+#    common_embed = create_representation("GIGA", constants.COMMON_EMBEDDINGS, 
+#            eval_words.union(positive_seeds).union(negative_seeds))
+#    common_words = set(common_embed.iw)
+#    eval_words = eval_words.intersection(common_words)
 
     hist_embed = create_representation("SVD", constants.COHA_EMBEDDINGS + "2000")
-    hist_counts = create_representation("Explicit", constants.COUNTS + "1990", normalize=False)
+    hist_counts = create_representation("Explicit", constants.COHA_COUNTS + "2000", normalize=False)
     hist_words = set(hist_embed.iw)
     eval_words = eval_words.intersection(hist_words)
 
@@ -210,7 +212,6 @@ def evaluate_overlap_methods():
     evaluate(polarities, lexicon, eval_words, tau_lexicon=kuperman)
     print
 
-
     print "Velikovich with 1990s Fic embeddings"
     hist_counts.normalize()
     polarities = run_method(positive_seeds, negative_seeds, 
@@ -222,22 +223,22 @@ def evaluate_overlap_methods():
     evaluate(polarities, lexicon, eval_words, tau_lexicon=kuperman)
     print
 
-    print "SentProp with CC"
-    polarities = run_method( positive_seeds, negative_seeds, 
-                        common_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
-                        method=polarity_induction_methods.bootstrap,
-                        score_method=polarity_induction_methods.random_walk,
-                        beta=0.99, nn=10,
-                        **DEFAULT_ARGUMENTS)
-    evaluate(polarities, lexicon, eval_words, tau_lexicon=kuperman)
-
-    print "Densifier with CC"
-    polarities = run_method( positive_seeds, negative_seeds, 
-                        common_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
-                        method=polarity_induction_methods.bootstrap,
-                        score_method=polarity_induction_methods.densify,
-                        **DEFAULT_ARGUMENTS)
-    evaluate(polarities, lexicon, eval_words, tau_lexicon=kuperman)
+#    print "SentProp with CC"
+#    polarities = run_method( positive_seeds, negative_seeds, 
+#                        common_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
+#                        method=polarity_induction_methods.bootstrap,
+#                        score_method=polarity_induction_methods.random_walk,
+#                        beta=0.99, nn=10,
+#                        **DEFAULT_ARGUMENTS)
+#    evaluate(polarities, lexicon, eval_words, tau_lexicon=kuperman)
+#
+#    print "Densifier with CC"
+#    polarities = run_method( positive_seeds, negative_seeds, 
+#                        common_embed.get_subembed(set(eval_words).union(negative_seeds).union(positive_seeds)),
+#                        method=polarity_induction_methods.bootstrap,
+#                        score_method=polarity_induction_methods.densify,
+#                        **DEFAULT_ARGUMENTS)
+#    evaluate(polarities, lexicon, eval_words, tau_lexicon=kuperman)
 
 
 
@@ -473,7 +474,7 @@ def evaluate_twitter_methods():
 
 
 def run_method(positive_seeds, negative_seeds, embeddings, transform_embeddings=False, post_densify=False,
-        method=polarity_induction_methods.linear, **kwargs):
+        method=polarity_induction_methods.densify, **kwargs):
     if transform_embeddings:
         print "Transforming embeddings..."
         embeddings = embedding_transformer.apply_embedding_transformation(embeddings, positive_seeds, negative_seeds, n_dim=50)

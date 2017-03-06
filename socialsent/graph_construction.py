@@ -2,7 +2,9 @@ import numpy as np
 from scipy import sparse
 from itertools import chain
 from nltk.corpus import wordnet as wn
+import multiprocessing
 
+MAX_PROCS=8
 
 """
 Methods for constructing graphs from word embeddings.
@@ -65,6 +67,4 @@ def transition_matrix(embeddings, word_net=False, first_order=False, sym=False, 
         L = L.dot(Dinv)
     if trans:
         return L.T
-    else:
-        return L
     return L
