@@ -35,6 +35,8 @@ This code also illustrates how to use the SocialSent methods.
 The file `polarity_induction_methods.py` contains implementations for a suite of sentiment induction algorithms, along with some comments/documentation on how to use them.
 The file `evaluate_methods.py` also includes the evaluation script used in our published work, which is useful to look at to get an idea of how SentProp and the other baselines work.
 
+NB: Right now the code uses dense numpy matrices in a (relatively) naive way and thus has memory requirements proportional to the square of the vocabulary size; with a reasonable amount of RAM, this works for vocabs of size 20000 words or less (which is reasonable for specific domain), but there are definitely optimizations that could be done, exploiting sparsity etc. I hope to get to these optimizations soon, but feel free to submit a pull request :). 
+
 ## Dependencies
 
 **The code is not currently compatible with the newest Keras distribution (1.0); only the "denisfy"/Densifier method requires this package, however. So you can either install an older Keras (0.3) or remove all calls to the "densify" method. I aim to update this dependency in the near future**
