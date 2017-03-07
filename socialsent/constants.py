@@ -3,15 +3,13 @@ from nltk.corpus import stopwords
 
 ### SYSTEM AGNOSTIC CONSTANTS 
 ######
-DATA = '/afs/cs.stanford.edu/u/wleif/sentiment/polarity_induction/data/'
-LEXICONS = DATA + 'lexicon_info/'
+DATA = 'data/'
 PROCESSED_LEXICONS = DATA + 'lexicons/'
 POLARITIES = DATA + 'polarities/'
 STOPWORDS = set(stopwords.words('english'))
 LEXICON = 'inquirer'
 YEARS = map(str, range(1850, 2000, 10))
 
-## CONSTANTS USED FOR SPECIFIC EXPERIMENTS ###
 ######
 ## THE FOLLOWING CAN BE REPLACED BY DOWNLOADING APPROPRIATE RESOURCES AND CHANGING PATHS:
 
@@ -21,7 +19,6 @@ GOOGLE_EMBEDDINGS = '/dfs/scratch0/gigawordvecs/GoogleNews-vectors-negative300_t
 TWITTER_EMBEDDINGS = '/dfs/scratch0/gigawordvecs/twitter_lower_cw1_sg400_transformed.txt'
 
 # The following can be constructed from the corpora cited in the paper
-## UPON PUBLICATION LINKS TO ALL EMBEDDINGS WILL BE PROVIDED
 STOCK_EMBEDDINGS = '/lfs/madmax9/0/stock/svd-vecs'
 STOCK_COUNTS = '/lfs/madmax3/0/stock/vecs.bin'
 COHA_EMBEDDINGS = '/dfs/scratch0/COHA/cooccurs/word/ppmi/lsmooth0/nFalse/neg1/cdsTrue/svd/300/50000/'
