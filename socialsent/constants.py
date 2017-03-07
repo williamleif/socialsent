@@ -1,9 +1,11 @@
 import util
+import os
 from nltk.corpus import stopwords
+from pkg_resources import resource_filename
 
 ### SYSTEM AGNOSTIC CONSTANTS 
 ######
-DATA = 'data/'
+DATA = os.path.abspath(resource_filename('socialsent', 'data')) + "/"
 PROCESSED_LEXICONS = DATA + 'lexicons/'
 POLARITIES = DATA + 'polarities/'
 STOPWORDS = set(stopwords.words('english'))
