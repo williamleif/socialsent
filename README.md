@@ -18,10 +18,12 @@ William L. Hamilton, Kevin Clark, Jure Leskovec, and Dan Jurafsky. Inducing Doma
 
 ## Install
 
-`pip install socialsent`
+`pip install socialsent` will work but has some downsides right now. In particular, if you use the pip install method, you will need to know where the installation directory is in order to modify the paths in the `constants.py` folder. You also won't have access to the examples that are discussed below if you install via pip. 
 
-Or you can download the source from the GitHub repo and run
+As a preferred alternative, download the source from the GitHub repo and run
 `python setup.py install`
+
+Note that you should re-run this command every time after you update the paths in `constants.py` folder. 
 
 ## Using the code
 
