@@ -39,5 +39,4 @@ def make_directories():
     util.mkdir(PROCESSED_LEXICONS)
     util.mkdir(POLARITIES)
 
-if __name__ == '__main__':
-    make_directories()
+make_directories()
