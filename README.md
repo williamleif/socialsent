@@ -1,7 +1,7 @@
 # SocialSent: Domain-Specific Sentiment Lexicons for Computational Social Science
 
 ### Authors: William L. Hamilton and Kevin Clark
-###[Project Website](http://nlp.stanford.edu/projects/socialsent)
+### [Project Website](http://nlp.stanford.edu/projects/socialsent)
 
 ## Overview 
 
