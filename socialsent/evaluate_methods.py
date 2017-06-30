@@ -161,7 +161,7 @@ def evaluate_overlap_methods():
         if not word in qwn:
             qwn[word] = 0
 
-    positive_seeds, negative_seeds = seeds.turney_seeds()
+    positive_seeds, negative_seeds = seeds.hist_seeds()
 
 #    common_embed = create_representation("GIGA", constants.COMMON_EMBEDDINGS, 
 #            eval_words.union(positive_seeds).union(negative_seeds))
