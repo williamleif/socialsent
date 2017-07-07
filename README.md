@@ -7,7 +7,7 @@
 
 SocialSent is a package for inducing and analyzing domain-specific sentiment lexicons.
 A number of state-of-the-art algorithms are included, including SentProp and Densifier (http://www.cis.lmu.de/~sascha/Ultradense/).
-A detailed description of the SentProp algorithm, as will as descriptions of other baselines in the SocialSent package is provided in the paper:
+A detailed description of the algorithms in the SocialSent package, with references, is provided in the paper:
 [Inducing Domain-Specific Sentiment Lexicons from Unlabeled Corpora](https://arxiv.org/abs/1606.02820).
 
 The [project website](http://nlp.stanford.edu/projects/socialsent) includes pre-constructed sentiment lexicons for 150 years of historical English and 250 online communities from the social media forum Reddit.
@@ -35,9 +35,11 @@ You can build embeddings yourself with the code in the `representations` directo
 This code also illustrates how to use the SocialSent methods.
 
 The file `polarity_induction_methods.py` contains implementations for a suite of sentiment induction algorithms, along with some comments/documentation on how to use them.
-The file `evaluate_methods.py` also includes the evaluation script used in our published work, which is useful to look at to get an idea of how SentProp and the other baselines work.
+The file `evaluate_methods.py` also includes the evaluation script used in our published work.
 
 NB: Right now the code uses dense numpy matrices in a (relatively) naive way and thus has memory requirements proportional to the square of the vocabulary size; with a reasonable amount of RAM, this works for vocabs of size 20000 words or less (which is reasonable for specific domain), but there are definitely optimizations that could be done, exploiting sparsity etc. I hope to get to these optimizations soon, but feel free to submit a pull request :). 
+
+NB: The random walk based implementation of the SentProp algorithm is quite sensitive to the embedding method used and pre-processing. We found it worked will with our "default" SVD-based embeddings on a restricted vocabulary (<50000 words), i.e. using context distribution smoothing (with a smoothing value of 0.75) and throwing away the singular values, as described in the paper. However, on large vocabularies/datasets and using more general embeddings (e.g., word2vec), the Densifier method usually achieves superior performance, with less sensitivity to pre-processing. 
 
 ## Dependencies
 
