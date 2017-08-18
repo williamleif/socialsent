@@ -1,0 +1,45 @@
+name: socialsent
+channels:
+- defaults
+dependencies:
+- cycler=0.10.0=py27_0
+- freetype=2.5.5=2
+- funcsigs=1.0.2=py27_0
+- functools32=3.2.3.2=py27_0
+- icu=54.1=0
+- libpng=1.6.27=0
+- libprotobuf=3.2.0=0
+- matplotlib=2.0.2=np112py27_0
+- mkl=2017.0.3=0
+- mock=2.0.0=py27_0
+- nltk=3.2.4=py27_0
+- numpy=1.12.1=py27_0
+- openssl=1.0.2l=0
+- pbr=1.10.0=py27_0
+- pip=9.0.1=py27_1
+- protobuf=3.2.0=py27_0
+- pyparsing=2.2.0=py27_0
+- pyqt=5.6.0=py27_2
+- python=2.7.13=0
+- python-dateutil=2.6.1=py27_0
+- pytz=2017.2=py27_0
+- qt=5.6.2=2
+- readline=6.2=2
+- requests=2.14.2=py27_0
+- scikit-learn=0.18.2=np112py27_0
+- scipy=0.19.1=np112py27_0
+- setuptools=27.2.0=py27_0
+- sip=4.18=py27_0
+- six=1.10.0=py27_0
+- sqlite=3.13.0=0
+- subprocess32=3.2.7=py27_0
+- tensorflow=1.1.0=np112py27_0
+- tk=8.5.18=0
+- werkzeug=0.12.2=py27_0
+- wheel=0.29.0=py27_0
+- zlib=1.2.8=3
+- pip:
+  - keras==0.3.3
+  - pyyaml==3.12
+  - theano==0.9.0
+
