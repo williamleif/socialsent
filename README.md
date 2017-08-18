@@ -25,7 +25,7 @@ As a preferred alternative, download the source from the GitHub repo and run
 
 Note that you should re-run this command every time after you update the paths in `constants.py` folder. 
 
-*If you run into issues related to Keras dependencies*: You can use the provided `environment.yml` file to set up a conda environment that should solve these issues. If you still run into issues after creating the conda environment, you might need to change the Keras backend to Theano (instead of TensorFlow). Many thanks to @sashank06 for this fix.
+*If you run into issues related to Keras dependencies*: You can use the provided `environment.yml` file to set up a conda environment that should solve these issues. If you still run into issues after creating the conda environment, you might need to change the Keras backend to Theano (instead of TensorFlow). Many thanks to [@sashank06](https://github.com/sashank06) for this fix.
 
 ## Using the code
 
