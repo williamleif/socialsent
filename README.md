@@ -25,6 +25,8 @@ As a preferred alternative, download the source from the GitHub repo and run
 
 Note that you should re-run this command every time after you update the paths in `constants.py` folder. 
 
+*If you run into issues related to Keras dependencies*: You can use the provided `environment.yml` file to set up a conda environment that should solve these issues. If you still run into issues after creating the conda environment, you might need to change the Keras backend to Theano (instead of TensorFlow). Many thanks to @sashank06 for this fix.
+
 ## Using the code
 
 To use SentProp you will need to either build some word vector embeddings or download some that are pre-trained.
@@ -43,7 +45,7 @@ NB: The random walk based implementation of the SentProp algorithm is quite sens
 
 ## Dependencies
 
-**The code is not currently compatible with the newest Keras distribution (1.0); only the "denisfy"/Densifier method requires this package, however. So you can either install an older Keras (0.3) or remove all calls to the "densify" method. I aim to update this dependency in the near future**
+**The code is not currently compatible with the newest Keras distribution (1.0); only the "denisfy"/Densifier method requires this package, however. So you can either (a) set up a conda environment using the provided environment.yml file, (b) install an older Keras (0.3) manually, or (c) remove all calls to the "densify" method. I aim to update this dependency in the near future**
 
 An up-to-date Python 2.7 distribution, with the standard packages provided by the anaconda distribution is required. However, the code was only tested with some versions of these packages.
 
