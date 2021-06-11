@@ -1,5 +1,4 @@
-import constants
-from socialsent import util
+from . import constants, util
 import collections
 import numpy as np
 import itertools
@@ -85,7 +84,7 @@ def make_bingliu_lexicon():
                     continue
                 polarities[line] = 1 if polarity == 'positive' else -1
             except:
-                print "skipping", line
+                print("skipping", line)
     util.write_json(polarities, constants.PROCESSED_LEXICONS + 'bingliu.json')
 
 def make_finance_lexicon():
@@ -173,22 +172,23 @@ def compare_lexicons(print_disagreements=False):
     }
 
     for l in lexicons:
-        print l, len(lexicons[l]), len([w for w in lexicons[l] if lexicons[l][w] != 0])
+        print(l, len(lexicons[l]), len([w for w in lexicons[l] if lexicons[l][w] != 0]))
 
     for l1, l2 in itertools.combinations(lexicons.keys(), 2):
         ps1, ps2 = lexicons[l1], lexicons[l2]
         common_words = set(ps1.keys()) & set(ps2.keys())
-        print l1, l2, "agreement: {:.2f}".format(
-            100.0 * sum(1 if ps1[w] == ps2[w] else 0 for w in common_words) / len(common_words))
+        print( l1, l2, "agreement: {:.2f}".format(
+                    100.0 * sum(1 if ps1[w] == ps2[w] else 0 for w in common_words) / len(common_words)))
         common_words = set([word for word in ps1.keys() if ps1[word] != 0]) & \
-                       set([word for word in ps2.keys() if ps2[word] != 0])  
-        print l1, l2, "agreement ignoring neutral: {:.2f}".format(
-            100.0 * sum(1 if ps1[w] * ps2[w] == 1 else 0 for w in common_words) / len(common_words))
+                       set([word for word in ps2.keys() if ps2[word] != 0])
+
+        print(l1, l2, "agreement ignoring neutral: {:.2f}".format(
+                    100.0 * sum(1 if ps1[w] * ps2[w] == 1 else 0 for w in common_words) / len(common_words)))
         
         if print_disagreements and l1 == 'opinion' and l2 == 'inquirer':
             for w in common_words:
                 if lexicons[l1][w] != lexicons[l2][w]:
-                    print w, lexicons[l1][w], lexicons[l2][w]
+                    print(w, lexicons[l1][w], lexicons[l2][w])
 
 
 def make_all_lexicons():

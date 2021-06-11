@@ -136,18 +136,18 @@ def graph_propagate(embeddings, positive_seeds, negative_seeds, **kwargs):
 
     M = similarity_matrix(embeddings, **kwargs)
     M = (M + M.T)/2
-    print "Getting positive scores.."
+    print("Getting positive scores..")
     pos_alpha = M.copy()
     neg_alpha = M.copy()
     M = csr_matrix(M)
     pos_alpha = run_graph_propagate([embeddings.wi[seed] for seed in positive_seeds],
             pos_alpha, M, **kwargs)
     pos_alpha = pos_alpha + pos_alpha.T
-    print "Getting negative scores.."
+    print("Getting negative scores..")
     neg_alpha = run_graph_propagate([embeddings.wi[seed] for seed in negative_seeds],
             neg_alpha, M, **kwargs)
     neg_alpha = neg_alpha + neg_alpha.T
-    print "Computing final scores..."
+    print("Computing final scores...")
     polarities = {}
     index = embeddings.wi
     pos_pols = {w:1.0 for w in positive_seeds}

@@ -1,4 +1,4 @@
-import util
+from . import util
 import os
 from nltk.corpus import stopwords
 from pkg_resources import resource_filename

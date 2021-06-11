@@ -1,6 +1,6 @@
 import json
 import subprocess
-import cPickle
+import pickle
 import os
 import shutil
 import sys
@@ -22,12 +22,12 @@ def mkdir(directory):
 
 def load_pickle(fname):
     with open(fname) as f:
-        return cPickle.load(f)
+        return pickle.load(f)
 
 
 def write_pickle(o, fname):
     with open(fname, 'w') as f:
-        cPickle.dump(o, f, -1)
+        pickle.dump(o, f, -1)
 
 
 def load_json(fname):
